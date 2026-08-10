@@ -1,0 +1,17 @@
+<aside class="how-it-works">
+  <h2 class="how-it-works__title">{{ title() }}</h2>
+  <!-- <p class="how-it-works__subtitle-text">{{ subtitle }}</p> -->
+
+  <ol class="how-it-works__steps">
+    @for (step of steps; track step.number) {
+      <li class="how-it-works__step">
+        <div class="how-it-works__badge">{{ step.number }}</div>
+        <div class="how-it-works__text">
+          <h3>{{ step.title }}</h3>
+          <p class="how-it-works__subtitle">{{ step.subtitle }}</p>
+          <p class="how-it-works__description">{{ step.description }}</p>
+        </div>
+      </li>
+    }
+  </ol>
+</aside>

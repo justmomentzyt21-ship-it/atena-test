@@ -1,0 +1,108 @@
+<section class="st-hero">
+  <div class="st-hero__content">
+    <img
+      class="st-hero__logo"
+      src="/images/brands/medicsur-logo.png"
+      alt="Medicsur - Soluciones Médicas Integrales"
+    />
+    <h1>Servicio Técnico Especializado</h1>
+    <p class="st-hero__subtitle">
+      Mantenimiento, reparación y asesoramiento técnico para equipamiento médico y hospitalario.
+    </p>
+  </div>
+</section>
+
+<section class="st-services">
+  <div class="st-services__intro">
+    <span class="st-services__eyebrow">Qué ofrecemos</span>
+    <h2>Soluciones técnicas integrales</h2>
+  </div>
+
+  <div class="st-services__grid">
+    @for (service of services; track service.title) {
+      <article class="service-card">
+        <div class="service-card__image">
+          <img [src]="service.image" [alt]="service.title" loading="lazy" />
+          <div class="service-card__icon">
+            @switch (service.icon) {
+              @case ('shield') {
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path
+                    fill="currentColor"
+                    d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"
+                  />
+                </svg>
+              }
+              @case ('wrench') {
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path
+                    fill="currentColor"
+                    d="M22.7 19 13.6 9.9c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 5 5 9 .7 4.7C-.4 7.1 0 10.1 2 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l3.2-3.2c.5-.4.5-1.1.1-1.5z"
+                  />
+                </svg>
+              }
+              @case ('box') {
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path
+                    fill="currentColor"
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM12 4.15 18.5 8 12 11.85 5.5 8zM5 9.7l6 3.45v6.85l-6-3.45zm8 10.3v-6.85l6-3.45V16.5z"
+                  />
+                </svg>
+              }
+              @case ('check') {
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path fill="currentColor" d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+              }
+            }
+          </div>
+        </div>
+        <div class="service-card__body">
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+        </div>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="st-cta">
+  <div class="st-cta__inner">
+    <h2>¿Necesitás asistencia técnica?</h2>
+    <p>Contanos qué equipo tenés y cuál es el problema, y te contactamos por WhatsApp.</p>
+
+    <div class="st-form">
+      <div class="st-form__field">
+        <label for="equipment">¿Qué equipo tenés?</label>
+        <input
+          id="equipment"
+          type="text"
+          placeholder="Ej: Monitor Philips V53"
+          [value]="equipmentInput()"
+          (input)="onEquipmentChange($any($event.target).value)"
+        />
+        @if (touched() && equipmentInput().trim().length < 3) {
+          <span class="st-form__error">Contanos qué equipo es</span>
+        }
+      </div>
+
+      <div class="st-form__field">
+        <label for="problem">¿Qué problema tiene?</label>
+        <textarea
+          id="problem"
+          rows="3"
+          placeholder="Describí brevemente el problema o qué necesitás"
+          [value]="problemInput()"
+          (input)="onProblemChange($any($event.target).value)"
+        ></textarea>
+        @if (touched() && problemInput().trim().length < 5) {
+          <span class="st-form__error">Contanos un poco más del problema</span>
+        }
+      </div>
+
+      <button type="button" class="st-cta__button" (click)="sendWhatsApp()">
+        Enviar consulta por WhatsApp
+      </button>
+    </div>
+  </div>
+</section>

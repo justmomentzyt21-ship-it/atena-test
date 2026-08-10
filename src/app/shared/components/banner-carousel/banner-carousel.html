@@ -1,0 +1,24 @@
+<div class="carousel">
+  <div class="carousel__track" [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'">
+    @for (slide of slides(); track slide.imageUrl) {
+      <div class="carousel__slide">
+        <img [src]="slide.imageUrl" [alt]="slide.name" />
+      </div>
+    }
+  </div>
+
+  @if (slides().length > 1) {
+    <button class="carousel__arrow carousel__arrow--prev" (click)="prev()">‹</button>
+    <button class="carousel__arrow carousel__arrow--next" (click)="next()">›</button>
+
+    <div class="carousel__dots">
+      @for (slide of slides(); track slide; let i = $index) {
+        <button
+          class="carousel__dot"
+          [class.active]="currentIndex() === i"
+          (click)="goTo(i)"
+        ></button>
+      }
+    </div>
+  }
+</div>

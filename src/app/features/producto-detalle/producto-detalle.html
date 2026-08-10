@@ -1,0 +1,77 @@
+@if (loading()) {
+  <app-spinner label="Cargando producto..."></app-spinner>
+} @else if (!product()) {
+  <div class="not-found">
+    <p>No encontramos este producto.</p>
+    <a routerLink="/ventas">Volver al catálogo</a>
+  </div>
+} @else {
+  @let p = product()!;
+  @let desc = descriptionParsed();
+
+  <section class="detalle">
+    <nav class="detalle__breadcrumb">
+      <a routerLink="/ventas">Catálogo</a> / <span>{{ p.name }}</span>
+    </nav>
+
+    <div class="detalle__grid">
+      <div class="detalle__image">
+        <img [src]="optimizedImage()" [alt]="p.name" />
+      </div>
+
+      <div class="detalle__info">
+        <span class="detalle__category">{{ p.category }}</span>
+        <h1>{{ p.name }}</h1>
+
+        @if (desc.items.length) {
+          @if (desc.title) {
+            <h2 class="detalle__description-title">{{ desc.title }}</h2>
+          }
+          <ul class="detalle__description-list">
+            @for (item of desc.items; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        } @else {
+          <p class="detalle__description">{{ desc.intro }}</p>
+        }
+
+        <div class="detalle__prices">
+          @if (p.salePrice) {
+            <span>Venta: ${{ p.salePrice | number }}</span>
+          }
+          @if (p.rentalPrice) {
+            <span>Alquiler: ${{ p.rentalPrice | number }}</span>
+          }
+        </div>
+
+        @if (p.type === 'venta-alquiler') {
+          <div class="detalle__modality">
+            <label>
+              <input
+                type="radio"
+                name="modality"
+                value="venta"
+                [checked]="selectedModality() === 'venta'"
+                (change)="onModalityChange('venta')"
+              />
+              Venta
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="modality"
+                value="alquiler"
+                [checked]="selectedModality() === 'alquiler'"
+                (change)="onModalityChange('alquiler')"
+              />
+              Alquiler
+            </label>
+          </div>
+        }
+
+        <button class="detalle__add" (click)="addToCart()">Agregar al carrito</button>
+      </div>
+    </div>
+  </section>
+}

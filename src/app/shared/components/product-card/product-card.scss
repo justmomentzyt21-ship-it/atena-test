@@ -1,0 +1,152 @@
+:host {
+  --pc-teal: #0b5d5d;
+  --pc-gold: #d4a63e;
+  --pc-cream: #faf7f0;
+  --pc-ink: #16302e;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(11, 93, 93, 0.08);
+  border: 1px solid rgba(11, 93, 93, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(11, 93, 93, 0.14);
+  }
+
+  &__image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--pc-cream);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 0.75rem;
+    }
+  }
+
+  &__type {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    background: var(--pc-gold);
+    color: var(--pc-ink);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  &__body {
+    padding: 1rem 1.1rem 0.5rem;
+    flex: 1;
+  }
+
+  &__category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--pc-teal);
+    opacity: 0.75;
+  }
+
+  &__name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--pc-ink);
+    margin: 0.3rem 0 0.6rem;
+    line-height: 1.3;
+  }
+
+  &__prices {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--pc-teal);
+  }
+
+  &__add {
+    margin: 0.75rem 1.1rem 1.1rem;
+    padding: 0.6rem;
+    background: var(--pc-teal);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--pc-gold);
+      color: var(--pc-ink);
+    }
+  }
+
+  &__modality {
+    display: flex;
+    gap: 1rem;
+    margin: 0.5rem 1.1rem 0;
+    font-size: 0.8rem;
+    color: var(--pc-ink);
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+    }
+  }
+
+  &__add.added {
+    background: #2e7d32;
+  }
+
+  &__price--muted {
+    color: #8a9a98;
+    font-style: italic;
+  }
+  &__stock-badge {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 0.6rem;
+    background: #c0392b;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  &__add.out-of-stock {
+    background: #7a8a88;
+
+    &:hover {
+      background: #6b7a78;
+      color: #fff;
+    }
+  }
+}
+
+.product-card__link {
+  display: contents; // el <a> "desaparece" visualmente, deja que sus hijos hereden el layout del padre
+  color: inherit;
+  text-decoration: none;
+}

@@ -1,0 +1,64 @@
+@if (cart.isDrawerOpen()) {
+  <div class="cart-drawer__backdrop" (click)="cart.closeDrawer()"></div>
+
+  <aside class="cart-drawer" [class.open]="cart.isDrawerOpen()">
+    <header class="cart-drawer__header">
+      <h2>Tu consulta</h2>
+      <button
+        type="button"
+        class="cart-drawer__close"
+        (click)="cart.closeDrawer()"
+        aria-label="Cerrar"
+      >
+        ✕
+      </button>
+    </header>
+
+    @if (cart.cartItems().length === 0) {
+      <div class="cart-drawer__empty">
+        <p>Todavía no agregaste productos.</p>
+      </div>
+    } @else {
+      <div class="cart-drawer__list">
+        @for (item of cart.cartItems(); track item.product.id + item.modality) {
+          <div class="cart-drawer__item">
+            <img [src]="item.product.imageUrl" [alt]="item.product.name" />
+
+            <div class="cart-drawer__item-info">
+              <h3>{{ item.product.name }}</h3>
+              <span class="cart-drawer__item-modality">
+                {{ item.modality === 'venta' ? 'Venta' : 'Alquiler' }}
+              </span>
+
+              <div class="cart-drawer__item-qty">
+                <button (click)="decrease(item.product.id, item.modality, item.quantity)">−</button>
+                <span>{{ item.quantity }}</span>
+                <button
+                  (click)="increase(item.product.id, item.modality, item.quantity)"
+                  [disabled]="item.product.stock > 0 && item.quantity >= item.product.stock"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <button
+              class="cart-drawer__item-remove"
+              (click)="remove(item.product.id, item.modality)"
+              aria-label="Quitar"
+            >
+              ✕
+            </button>
+          </div>
+        }
+      </div>
+
+      <footer class="cart-drawer__footer">
+        <p>{{ cart.itemCount() }} producto(s)</p>
+        <a routerLink="/carrito" class="cart-drawer__cta" (click)="goToCart()">
+          Realizar Consulta
+        </a>
+      </footer>
+    }
+  </aside>
+}

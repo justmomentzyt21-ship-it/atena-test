@@ -1,0 +1,11 @@
+<div class="logo-slider" [ngStyle]="cssVars">
+  <div class="logo-slider__list">
+    @for (logo of logos; track logo.src; let i = $index) {
+      <div class="logo-slider__item" [style.left]="'100%'" [style.animation-delay]="delayFor(i)">
+        <div class="logo-slider__card">
+          <img [src]="logo.src" [alt]="logo.alt" loading="lazy" />
+        </div>
+      </div>
+    }
+  </div>
+</div>

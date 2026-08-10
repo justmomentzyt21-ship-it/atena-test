@@ -1,0 +1,51 @@
+<aside class="contact-sidebar">
+  <!-- <div class="contact-sidebar__notice">
+    <svg viewBox="0 0 24 24" width="20" height="20">
+      <path
+        fill="currentColor"
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+      />
+    </svg>
+    <p>
+      <strong>Esta web no procesa pagos.</strong> El carrito arma tu consulta: la compra, el pago y
+      la entrega se coordinan directamente con nuestro equipo.
+    </p>
+  </div> -->
+
+  <h2 class="contact-sidebar__title">Carga tu carrito y enviá tu consulta como prefieras</h2>
+
+  <a [href]="whatsappLink" target="_blank" rel="noopener" class="contact-sidebar__option">
+    <span class="contact-sidebar__icon contact-sidebar__icon--whatsapp">
+      <svg viewBox="0 0 24 24" width="22" height="22">
+        <path
+          fill="currentColor"
+          d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.79 14.13c-.24.68-1.4 1.3-1.93 1.35-.51.05-1.02.24-3.43-.71-2.9-1.15-4.75-4.09-4.9-4.28-.14-.19-1.17-1.55-1.17-2.96s.72-2.09 1-2.38c.24-.25.53-.31.71-.31h.5c.16 0 .38-.03.58.45.24.57.81 1.98.88 2.12.07.14.11.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.22 1.36.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.19-.28.37-.23.62-.14.26.1 1.63.77 1.9.91.28.14.47.21.53.33.07.13.07.71-.17 1.39z"
+        />
+      </svg>
+    </span>
+    <div>
+      <h3>WhatsApp</h3>
+      <p>Envío rápido y directo.</p>
+    </div>
+  </a>
+
+  <a [href]="mailtoLink" class="contact-sidebar__option">
+    <span class="contact-sidebar__icon contact-sidebar__icon--email">
+      <svg viewBox="0 0 24 24" width="22" height="22">
+        <path
+          fill="currentColor"
+          d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+        />
+      </svg>
+    </span>
+    <div>
+      <h3>Email</h3>
+      <p>Recibí tu consulta en tu correo.</p>
+    </div>
+  </a>
+
+  <p class="contact-sidebar__footnote">
+    El precio final, la forma de pago y la coordinación de entrega se confirman con un asesor una
+    vez recibida tu consulta.
+  </p>
+</aside>

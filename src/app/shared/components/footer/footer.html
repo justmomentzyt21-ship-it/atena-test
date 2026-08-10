@@ -1,0 +1,121 @@
+<footer class="footer">
+  <div class="footer__top">
+    <!-- Columna 1: Logo + descripción + social -->
+    <div class="footer__col footer__brand">
+      <img src="/atena-logo-blanco.svg" alt="Grupo Atena" class="footer__logo" />
+
+      <p class="footer__desc">Grupo Atena - Tres areas, un mismo compromiso</p>
+      <div class="footer__social">
+        <a
+          href="https://www.instagram.com/grupoatena.med/"
+          target="_blank"
+          rel="noopener"
+          class="social-btn"
+          id="instagram"
+          aria-label="Instagram"
+        >
+          <svg viewBox="0 0 24 24" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/company/grupoatena-med/"
+          target="_blank"
+          rel="noopener"
+          class="social-btn"
+          id="linkedin"
+          aria-label="LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Wrapper que agrupa Navegación + Contacto y se empuja a la derecha -->
+    <div class="footer__middle">
+      <nav class="footer__col" id="navegacion">
+        <h4 class="footer__title">Navegación</h4>
+        <ul class="footer__list">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/ventas">Ventas</a></li>
+          <li><a routerLink="/distribucion-alquiler">Alquiler</a></li>
+          <li><a routerLink="/servicio-tecnico">Servicio Técnico</a></li>
+          <li><a routerLink="/contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__col">
+        <h4 class="footer__title">Contacto</h4>
+        <ul class="footer__list footer__list--contact">
+          <li>
+            <svg
+              class="footer__icon"
+              viewBox="0 0 24 24"
+              height="16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.71.45 3.38 1.3 4.85L2.05 22l5.36-1.4a9.9 9.9 0 004.63 1.18h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.79 14.12c-.24.68-1.4 1.31-1.93 1.36-.5.05-.99.24-3.35-.7-2.83-1.13-4.64-4-4.78-4.19-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2 .88 2.15.07.15.11.32.02.51-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.28.7 1.16 1.51 1.88 1.04.93 1.91 1.22 2.19 1.36.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.28.36-.23.61-.14.24.09 1.55.73 1.81.87.27.14.45.21.51.32.07.12.07.66-.17 1.31z"
+              />
+            </svg>
+            <span>+54 11 3108 0788</span>
+          </li>
+          <li>
+            <svg
+              class="footer__icon"
+              viewBox="0 0 24 24"
+              height="16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5z"
+              />
+            </svg>
+            <span>ventasatena@gmail.com</span>
+          </li>
+          <li>
+            <svg
+              class="footer__icon"
+              viewBox="0 0 24 24"
+              height="16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"
+              />
+            </svg>
+            <span>Cerrito 2018, Bernal Oeste, Buenos Aires</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Columna 5: Empresas del Grupo -->
+    <div class="footer__col">
+      <h4 class="footer__title">Areas del Grupo</h4>
+      <ul class="footer__list footer__list--brands">
+        <li>
+          <img src="/images/brands/dana-yasmin-logo.png" alt="Atena" class="footer__brand-logo" />
+          <span>Atena Dana Yasmin</span>
+        </li>
+        <li>
+          <img src="/images/brands/full-care-logo.png" alt="Atena" class="footer__brand-logo" />
+          <span>Atena Full Care</span>
+        </li>
+        <li>
+          <img src="/images/brands/medicsur-logo.png" alt="Medicsur" class="footer__brand-logo" />
+          <span>Medicsur</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

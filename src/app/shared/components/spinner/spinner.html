@@ -1,0 +1,17 @@
+<div class="spinner-wrap">
+  <svg class="spinner" viewBox="0 0 50 50">
+    <circle class="spinner__track" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+    <circle
+      class="spinner__arc"
+      cx="25"
+      cy="25"
+      r="20"
+      fill="none"
+      stroke-width="5"
+      stroke-linecap="round"
+    ></circle>
+  </svg>
+  @if (label) {
+    <span class="spinner__label">{{ label }}</span>
+  }
+</div>

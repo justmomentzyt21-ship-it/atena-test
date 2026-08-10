@@ -1,0 +1,101 @@
+:host {
+  --c-teal: #0b5d5d;
+  --c-teal-light: #12807f;
+  --c-gold: #d4a63e;
+  --c-cream: #faf7f0;
+  --c-ink: #16302e;
+
+  display: block;
+}
+
+.contact-sidebar {
+  &__title {
+    font-size: 1.05rem;
+    color: var(--c-ink);
+    line-height: 1.35;
+    margin: 0 0 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--c-gold);
+  }
+
+  &__option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    text-decoration: none;
+    padding: 0.9rem 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba(11, 93, 93, 0.1);
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      color: var(--c-ink);
+      margin: 0 0 0.2rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: #4a5d5b;
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--whatsapp {
+      background: #25d366;
+      color: #fff;
+    }
+
+    &--email {
+      background: var(--c-gold);
+      color: var(--c-ink);
+    }
+  }
+  &__notice {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    background: var(--c-cream);
+    border-left: 3px solid var(--c-gold);
+    border-radius: 8px;
+    padding: 0.85rem 0.9rem;
+    margin-bottom: 1.5rem;
+
+    svg {
+      flex-shrink: 0;
+      color: var(--c-teal);
+      margin-top: 0.1rem;
+    }
+
+    p {
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--c-ink);
+      margin: 0;
+
+      strong {
+        color: var(--c-teal);
+      }
+    }
+  }
+
+  &__footnote {
+    font-size: 0.72rem;
+    color: #8a9a98;
+    line-height: 1.5;
+    margin: 1.25rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(11, 93, 93, 0.1);
+  }
+}

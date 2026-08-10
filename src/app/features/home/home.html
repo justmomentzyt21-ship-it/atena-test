@@ -1,0 +1,54 @@
+<section class="hero">
+  <div class="hero__intro hero__intro--centered">
+    <img class="logo-verde" src="logo-dorado.png" alt="" />
+    <span class="hero__eyebrow hero__eyebrow--centered">Tres áreas, un mismo compromiso</span>
+
+    <h1 class="hero__headline">Equipamiento Médico</h1>
+
+    <p class="hero__subtitle hero__subtitle--centered">
+      Más de 30 años de trayectoria familiar brindando soluciones integrales en equipamiento
+      hospitalario.
+    </p>
+  </div>
+  <div class="hero__scale" aria-hidden="true"></div>
+  <div class="hero__grid">
+    @for (brand of brands; track brand.name; let i = $index) {
+      <a
+        [routerLink]="brand.link"
+        class="brand-card"
+        [class.in-view]="visibleCards().has(i)"
+        [style.--stagger-delay.s]="i * 0.15"
+        [attr.data-index]="i"
+        #brandCard
+        [style.--accent]="brand.accent"
+      >
+        <div class="brand-card__header">
+          <img class="brand-card__logo" [src]="brand.logo" [alt]="brand.name" loading="lazy" />
+        </div>
+
+        <div class="brand-card__body">
+          <span class="brand-card__tag">{{ brand.tag }}</span>
+          <h3 class="brand-card__name">{{ brand.name }}</h3>
+          <p class="brand-card__title">{{ brand.title }}</p>
+          <p class="brand-card__description">{{ brand.description }}</p>
+
+          <div class="brand-card__footer">
+            <span class="brand-card__cta">
+              {{ brand.cta }}
+              <svg viewBox="0 0 24 24" width="18" height="18">
+                <path fill="currentColor" d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    }
+  </div>
+</section>
+<section class="partners">
+  <div class="partners__intro">
+    <span class="partners__eyebrow">Confían en nosotros</span>
+    <h2>Hospitales y clínicas que trabajan con nosotros</h2>
+  </div>
+  <app-logo-carousel [logos]="hospitalLogos"></app-logo-carousel>
+</section>

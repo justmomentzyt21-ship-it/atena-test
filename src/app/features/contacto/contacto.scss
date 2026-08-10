@@ -1,0 +1,226 @@
+:host {
+  /* Misma paleta que el Home (Grupo Atena) */
+  --c-teal: #016974;
+  --c-teal-light: #12807f;
+  --c-teal-deep: #1a4c81;
+  --c-gold: #d4a63e;
+  --c-cream: #faf7f0;
+  --c-ink: #16302e;
+  --c-paper: rgba(250, 247, 240, 0.05);
+  --c-hairline-gold: rgba(212, 166, 62, 0.55);
+
+  display: block;
+}
+
+.contacto {
+  /* Mismo gradiente exacto del hero del home */
+  background: linear-gradient(165deg, var(--c-teal-deep) 0%, var(--c-teal) 55%, #7fac8c 100%);
+  padding: 4rem 2rem 4.5rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--c-paper) 1px, transparent 1px),
+      linear-gradient(90deg, var(--c-paper) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, transparent 85%);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, transparent 85%);
+    pointer-events: none;
+  }
+
+  &__intro {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--c-gold);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    &::before,
+    &::after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--c-hairline-gold);
+    }
+  }
+
+  &__headline {
+    color: #fff;
+    font-size: clamp(2rem, 1.5rem + 2vw, 2.75rem);
+    line-height: 1.15;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: var(--c-cream);
+    opacity: 0.8;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  &__scale {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+    height: 9px;
+    border-top: 1px solid rgba(250, 247, 240, 0.3);
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(212, 166, 62, 0.8) 0,
+      rgba(212, 166, 62, 0.8) 1px,
+      transparent 1px,
+      transparent 40px
+    );
+  }
+
+  &__grid {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 2.5rem auto 0;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  &__map {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(250, 247, 240, 0.14);
+    min-height: 340px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--c-gold) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      border: 0;
+    }
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.3rem;
+  background: var(--c-cream);
+  border-radius: 14px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(250, 247, 240, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+    border-color: var(--c-gold);
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--c-teal-deep);
+    color: var(--c-cream);
+    flex-shrink: 0;
+  }
+
+  &--whatsapp &__icon {
+    background: #25d366;
+  }
+
+  &--instagram &__icon {
+    background: radial-gradient(
+      circle at 30% 107%,
+      #fdf497 0%,
+      #fd5949 45%,
+      #d6249f 60%,
+      #285aeb 90%
+    );
+  }
+  &__label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--c-teal-light);
+    margin-bottom: 0.15rem;
+  }
+
+  &__value {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--c-ink);
+  }
+}
+
+@media (max-width: 768px) {
+  .contacto {
+    padding: 3rem 1.25rem 3rem;
+
+    &__grid {
+      grid-template-columns: 1fr;
+      margin-top: 2rem;
+    }
+
+    &__map {
+      min-height: 260px;
+
+      iframe {
+        min-height: 260px;
+      }
+    }
+  }
+}

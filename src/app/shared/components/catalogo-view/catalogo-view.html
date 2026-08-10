@@ -1,0 +1,57 @@
+<app-banner-carousel [screen]="type === 'venta' ? 'Ventas' : 'Alquiler'"></app-banner-carousel>
+<div class="catalogo-wrapper">
+  <app-how-it-works [screen]="type"></app-how-it-works>
+  <div class="catalogo">
+    <aside class="catalogo__sidebar">
+      <h2 class="catalogo__sidebar-title">Categorías</h2>
+      <ul class="catalogo__category-list">
+        @for (cat of categories(); track cat) {
+          <li>
+            <button
+              class="catalogo__category-btn"
+              [class.active]="selectedCategory() === cat"
+              (click)="selectCategory(cat)"
+            >
+              {{ cat }}
+            </button>
+          </li>
+        }
+      </ul>
+    </aside>
+
+    <main class="catalogo__content">
+      <div class="catalogo__search">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+          <path
+            fill="currentColor"
+            d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5L20.49 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"
+          />
+        </svg>
+        <input
+          type="text"
+          placeholder="Buscar producto..."
+          [value]="searchTerm()"
+          (input)="onSearchChange($any($event.target).value)"
+        />
+      </div>
+
+      <div class="catalogo__results-info">
+        <span>{{ selectedCategory() }}</span>
+        <span class="catalogo__count">{{ filteredProducts().length }} producto(s)</span>
+      </div>
+
+      @if (loading()) {
+        <app-spinner label="Cargando catálogo..."></app-spinner>
+      } @else if (filteredProducts().length === 0) {
+        <div class="catalogo__empty">No encontramos productos con esos filtros.</div>
+      } @else {
+        <div class="catalogo__grid">
+          @for (product of filteredProducts(); track product.id) {
+            <app-product-card [product]="product"></app-product-card>
+          }
+        </div>
+      }
+    </main>
+  </div>
+  <app-contact-sidebar></app-contact-sidebar>
+</div>

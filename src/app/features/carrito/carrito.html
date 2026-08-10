@@ -1,0 +1,54 @@
+<section class="carrito">
+  <h1>Tu consulta</h1>
+
+  @if (cart.cartItems().length === 0) {
+    <div class="carrito__empty">
+      <p>Todavía no agregaste productos.</p>
+      <a routerLink="/ventas">Ver catálogo</a>
+    </div>
+  } @else {
+    <div class="carrito__list">
+      @for (item of cart.cartItems(); track item.product.id + item.modality) {
+        <div class="carrito__item">
+          <img [src]="item.product.imageUrl" [alt]="item.product.name" />
+
+          <div class="carrito__item-info">
+            <h3>{{ item.product.name }}</h3>
+            <span class="carrito__item-modality">
+              {{ item.modality === 'venta' ? 'Venta' : 'Alquiler' }}
+            </span>
+            @if (item.product.stock === 0) {
+              <span class="carrito__item-no-stock">⚠ Sin stock disponible — se consulta igual</span>
+            }
+          </div>
+
+          <div class="carrito__item-qty">
+            <button (click)="decrease(item.product.id, item.modality, item.quantity)">−</button>
+            <span>{{ item.quantity }}</span>
+            <button
+              (click)="increase(item.product.id, item.modality, item.quantity)"
+              [disabled]="item.product.stock > 0 && item.quantity >= item.product.stock"
+            >
+              +
+            </button>
+          </div>
+
+          <button class="carrito__item-remove" (click)="remove(item.product.id, item.modality)">
+            Quitar
+          </button>
+        </div>
+      }
+    </div>
+    @if (toastMessage()) {
+      <div class="carrito__toast">{{ toastMessage() }}</div>
+    }
+    <button class="carrito__btn-clear" (click)="clearCart()">Vaciar carrito</button>
+    <div class="carrito__actions">
+      <p>{{ cart.itemCount() }} producto(s) en tu consulta</p>
+      <button class="carrito__btn-whatsapp" (click)="sendWhatsApp()">
+        Realizar consulta por WhatsApp
+      </button>
+      <button class="carrito__btn-email" (click)="sendEmail()">Realizar consulta por Email</button>
+    </div>
+  }
+</section>

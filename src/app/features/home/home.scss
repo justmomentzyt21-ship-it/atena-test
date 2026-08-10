@@ -1,0 +1,430 @@
+:host {
+  --c-teal: #016974;
+  --c-teal-light: #12807f;
+  --c-gold: #d4a63e;
+  --c-cream: #faf7f0;
+  --c-ink: #16302e;
+
+  /* nuevas — solo para el hero/brand-card, no afectan a .partners */
+  --c-teal-deep: #1a4c81;
+  --c-paper: rgba(250, 247, 240, 0.05);
+  --c-hairline: rgba(250, 247, 240, 0.16);
+  --c-hairline-gold: rgba(212, 166, 62, 0.55);
+  --font-display: 'Fraunces', Georgia, 'Iowan Old Style', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  display: block;
+}
+
+/* Si podés, movés este @import a index.html (mejor para performance).
+   Lo dejo acá para que funcione igual sin tocar nada más. */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+.hero {
+  background: linear-gradient(165deg, var(--c-teal-deep) 0%, var(--c-teal) 55%, #7fac8c 100%);
+  padding: 2rem 2rem 4.5rem;
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: 701px) {
+    // Ajustá 80px al alto real de tu navbar
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // Los verticales se achican con la altura del viewport para que el hero
+    // pueda encoger de verdad en pantallas bajas, no solo quedarse en el mínimo de contenido
+    padding-top: clamp(1rem, 5vh, 2rem);
+    padding-bottom: clamp(1.5rem, 8vh, 4.5rem);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--c-paper) 1px, transparent 1px),
+      linear-gradient(90deg, var(--c-paper) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, transparent 85%);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, transparent 85%);
+    pointer-events: none;
+  }
+
+  &__intro--centered {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    gap: clamp(
+      0.6rem,
+      3vh,
+      1.1rem
+    ); // antes 10px — con esto controlás TODO el espaciado vertical acá
+    animation: logoFadeIn 1s ease-out both;
+    animation-delay: 0.2s;
+  }
+
+  &__eyebrow--centered {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--c-gold);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0; // antes 1.5rem — ahora el gap del padre maneja el espacio, sin duplicar
+
+    &::before,
+    &::after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--c-hairline-gold);
+    }
+  }
+
+  .logo-verde {
+    height: clamp(150px, 8vw, 150px); // antes 200px fijo — ahora responsive y proporcional
+    /* filter: drop-shadow(0 4px 24px rgba(254, 254, 253, 0.5)); */
+  }
+
+  @keyframes logoFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__headline {
+    color: #fff;
+    font-size: clamp(2.6rem, 1.6rem + 4.5vw, 4.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+    margin: 0 0 1.25rem;
+  }
+
+  &__subtitle--centered {
+    color: var(--c-cream);
+    opacity: 0.75;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  &__scale {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    margin-top: clamp(1.25rem, 5vh, 3.25rem);
+    margin-inline: auto;
+    align-self: center;
+    flex-shrink: 0;
+    height: 9px;
+    border-top: 1px solid rgba(250, 247, 240, 0.3);
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(212, 166, 62, 0.8) 0,
+      rgba(212, 166, 62, 0.8) 1px,
+      transparent 1px,
+      transparent 40px
+    );
+    animation: scaleFadeIn 1s ease-out both;
+    animation-delay: 0.75s;
+  }
+}
+
+.hero__grid {
+  max-width: 1300px;
+  margin: clamp(1.25rem, 5vh, 3.5rem) auto 0;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  background: none;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.brand-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(11, 93, 93, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  animation: cardFadeIn 0.6s ease forwards;
+
+  &:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  &:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+
+  // La card (header/logo) se ve siempre desde el load.
+  // Solo el __body se anima al hacer scroll (ver más abajo).
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.14);
+
+    &::before {
+      transform: scaleX(1);
+    }
+
+    .brand-card__logo {
+      transform: scale(1.05);
+    }
+
+    .brand-card__cta {
+      color: var(--accent);
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: clamp(110px, 20vh, 170px);
+    padding: clamp(1.25rem, 5vh, 2.5rem);
+    background: radial-gradient(
+      circle at top right,
+      color-mix(in srgb, var(--accent) 12%, white),
+      white 70%
+    );
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  &__logo {
+    width: 170px;
+    max-width: 75%;
+    object-fit: contain;
+    transition: transform 0.35s ease;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    // Colapsado por defecto: sin alto, sin padding, sin opacidad
+    max-height: 0;
+    opacity: 0;
+    padding: 0 2rem;
+    overflow: hidden;
+    transition:
+      max-height 0.6s ease,
+      opacity 0.5s ease,
+      padding 0.6s ease;
+  }
+
+  &.in-view &__body {
+    max-height: 640px; // margen generoso, mayor a la altura real de contenido
+    opacity: 1;
+    padding: clamp(1.25rem, 5vh, 2rem) 2rem;
+    transition-delay: calc(
+      var(--stagger-delay, 0s) + 0.25s
+    ); // se abre un instante después de que la card ya apareció
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(11, 93, 93, 0.08);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  &__name {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #173330;
+    margin: 0 0 0.45rem;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 1.25rem;
+  }
+
+  &__description {
+    flex: 1;
+    color: #5c6b69;
+    line-height: 1.7;
+    font-size: 0.94rem;
+    margin: 0;
+  }
+
+  &__footer {
+    margin-top: 2rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #173330;
+    font-weight: 600;
+    transition: color 0.3s;
+
+    svg {
+      transition: transform 0.3s;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.partners {
+  background: var(--c-cream);
+  padding: 2rem 2rem 4.5rem;
+
+  &__intro {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    color: var(--c-teal-light);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  &__intro h2 {
+    color: var(--c-ink);
+    font-size: 1.4rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-card__body {
+    max-height: none;
+    opacity: 1;
+    padding: 2rem;
+    transition: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: 3.5rem 1.25rem 3rem;
+
+    &__intro {
+      grid-template-columns: 1fr;
+    }
+
+    &__stat {
+      text-align: left;
+      margin-top: 1.5rem;
+
+      strong {
+        font-size: 3.25rem;
+      }
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      max-width: 100%;
+    }
+
+    &__subtitle {
+      max-width: 100%;
+    }
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-card:not(:first-child) {
+    border-left: none;
+    border-top: 1px solid rgba(11, 93, 93, 0.12);
+  }
+
+  .partners {
+    padding: 3rem 1.25rem 3.5rem;
+  }
+}

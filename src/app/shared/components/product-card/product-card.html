@@ -1,0 +1,67 @@
+<article class="product-card">
+  <a [routerLink]="['/ventas', product.slug]" class="product-card__link">
+    <div class="product-card__image">
+      <img [src]="optimizedImage" [alt]="product.name" loading="lazy" />
+      <span class="product-card__type">{{ product.type }}</span>
+      @if (product.stock === 0) {
+        <span class="product-card__stock-badge">Sin stock</span>
+      }
+    </div>
+
+    <div class="product-card__body">
+      <span class="product-card__category">{{ product.category }}</span>
+      <h3 class="product-card__name">{{ product.name }}</h3>
+
+      <div class="product-card__prices">
+        @if (product.salePrice) {
+          <span class="product-card__price">Venta: ${{ product.salePrice | number }}</span>
+        }
+        @if (product.rentalPrice) {
+          <span class="product-card__price">Alquiler: ${{ product.rentalPrice | number }}</span>
+        }
+        @if (!product.salePrice && !product.rentalPrice) {
+          <span class="product-card__price product-card__price--muted">Consultar precio</span>
+        }
+      </div>
+
+      @if (product.type === 'venta-alquiler') {
+        <div class="product-card__modality">
+          <label>
+            <input
+              type="radio"
+              name="modality-{{ product.id }}"
+              value="venta"
+              [checked]="selectedModality() === 'venta'"
+              (change)="onModalityChange('venta')"
+            />
+            Venta
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="modality-{{ product.id }}"
+              value="alquiler"
+              [checked]="selectedModality() === 'alquiler'"
+              (change)="onModalityChange('alquiler')"
+            />
+            Alquiler
+          </label>
+        </div>
+      }
+    </div>
+  </a>
+  <button
+    class="product-card__add"
+    (click)="addToCart()"
+    [class.added]="justAdded()"
+    [class.out-of-stock]="product.stock === 0"
+  >
+    @if (justAdded()) {
+      ✓ Agregado
+    } @else if (product.stock === 0) {
+      Consultar sin stock
+    } @else {
+      Agregar al carrito
+    }
+  </button>
+</article>

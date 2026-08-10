@@ -1,0 +1,62 @@
+.whatsapp-fab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 999;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  i {
+    font-size: 28px;
+    line-height: 1;
+    text-decoration: none;
+  }
+  animation: logoFadeIn 1s ease-out both;
+  animation-delay: 0.2s;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .whatsapp-fab {
+    right: 1rem;
+    bottom: 1rem;
+    width: 52px;
+    height: 52px;
+
+    i {
+      font-size: 26px;
+    }
+  }
+}
