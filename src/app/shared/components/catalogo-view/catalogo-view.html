@@ -4,6 +4,8 @@
   <div class="catalogo">
     <aside class="catalogo__sidebar">
       <h2 class="catalogo__sidebar-title">Categorías</h2>
+
+      <!-- Versión desktop: lista vertical, sin cambios -->
       <ul class="catalogo__category-list">
         @for (cat of categories(); track cat) {
           <li>
@@ -17,6 +19,32 @@
           </li>
         }
       </ul>
+
+      <!-- Versión mobile: desplegable -->
+      <div class="catalogo__category-dropdown">
+        <button
+          class="catalogo__category-dropdown-toggle"
+          [class.open]="categoryMenuOpen()"
+          (click)="toggleCategoryMenu()"
+        >
+          <span>{{ selectedCategory() }}</span>
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z" />
+          </svg>
+        </button>
+
+        @if (categoryMenuOpen()) {
+          <ul class="catalogo__category-dropdown-list">
+            @for (cat of categories(); track cat) {
+              <li>
+                <button [class.active]="selectedCategory() === cat" (click)="selectCategory(cat)">
+                  {{ cat }}
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
     </aside>
 
     <main class="catalogo__content">

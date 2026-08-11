@@ -62,8 +62,15 @@ export class CatalogoView implements OnInit {
     });
   }
 
+  categoryMenuOpen = signal(false);
+
+  toggleCategoryMenu() {
+    this.categoryMenuOpen.update((open) => !open);
+  }
+
   selectCategory(category: string) {
     this.selectedCategory.set(category);
+    this.categoryMenuOpen.set(false); // se cierra solo al elegir, cómodo en mobile
   }
 
   onSearchChange(value: string) {

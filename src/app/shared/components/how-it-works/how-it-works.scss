@@ -90,3 +90,38 @@
     margin: 0 0 1.75rem;
   }
 }
+
+@media (max-width: 600px) {
+  .how-it-works {
+    &__title {
+      font-size: 1.15rem;
+      margin-bottom: 1.25rem;
+    }
+
+    &__steps {
+      gap: 1.25rem;
+
+      &::before {
+        left: 15px;
+      }
+    }
+
+    &__badge {
+      width: 32px;
+      height: 32px;
+      font-size: 0.95rem;
+    }
+
+    &__text h3 {
+      font-size: 1rem;
+    }
+
+    &__subtitle {
+      font-size: 0.8rem;
+    }
+
+    &__description {
+      font-size: 0.78rem;
+    }
+  }
+}
