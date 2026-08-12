@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, shareReplay, catchError, of, timeout } from 'rxjs';
+import { Observable, map, shareReplay, catchError, of, timeout, retry, timer } from 'rxjs';
 import { ProductRepository } from '../tokens/product-repository.token';
 import { Product } from '../models/product.model';
 import { environment } from '../../../environments/environment';
 import { generateSlug } from '../utils/slug.util';
 
-const CACHE_DURATION_MS = 2 * 60 * 1000;
-const REQUEST_TIMEOUT_MS = 8000; // no esperar indefinidamente a Apps Script
+const CACHE_DURATION_MS = 5 * 60 * 1000;
+const REQUEST_TIMEOUT_MS = 4000; // por request individual — el script responde en <1.5s cuando anda bien
+const RETRY_COUNT = 2;
 
 @Injectable()
 export class GoogleSheetsProductAdapter implements ProductRepository {
@@ -23,13 +24,13 @@ export class GoogleSheetsProductAdapter implements ProductRepository {
     if (!this.cache$ || cacheExpired) {
       this.cacheTimestamp = now;
       this.cache$ = this.http.get<any[]>(environment.productsApiUrl).pipe(
-        timeout(REQUEST_TIMEOUT_MS),
+        timeout(10000),
         map((rawData) => rawData.map((row) => this.mapToProduct(row))),
         catchError((err) => {
-          console.error('Error al obtener productos desde Google Sheets:', err);
-          this.cacheTimestamp = 0; // no cachear el fallo, para reintentar en la próxima llamada
+          console.error('Error al obtener productos:', err);
+          this.cacheTimestamp = 0;
           this.cache$ = null;
-          return of([] as Product[]); // fallback: lista vacía en vez de colgar la app
+          return of([] as Product[]);
         }),
         shareReplay(1),
       );

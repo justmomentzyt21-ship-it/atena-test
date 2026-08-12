@@ -80,24 +80,6 @@
     color: var(--pc-teal);
   }
 
-  &__add {
-    margin: 0.75rem 1.1rem 1.1rem;
-    padding: 0.6rem;
-    background: var(--pc-teal);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: var(--pc-gold);
-      color: var(--pc-ink);
-    }
-  }
-
   &__modality {
     display: flex;
     gap: 1rem;
@@ -111,10 +93,6 @@
       gap: 0.3rem;
       cursor: pointer;
     }
-  }
-
-  &__add.added {
-    background: #2e7d32;
   }
 
   &__price--muted {
@@ -134,13 +112,95 @@
     padding: 0.25rem 0.6rem;
     border-radius: 999px;
   }
+}
 
-  &__add.out-of-stock {
-    background: #7a8a88;
+.CartBtn {
+  width: calc(100% - 2.2rem);
+  height: 42px;
+  margin: 0.75rem 1.1rem 1.1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--pc-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(11, 93, 93, 0.12);
+  position: relative;
+
+  .IconContainer {
+    position: absolute;
+    left: -34px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pc-ink);
+    z-index: 2;
+    transition-duration: 0.4s;
+  }
+
+  .icon {
+    border-radius: 1px;
+  }
+
+  .text {
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pc-ink);
+    z-index: 1;
+    transition-duration: 0.4s;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    .IconContainer {
+      transform: translateX(46px);
+      border-radius: 40px;
+    }
+    .text {
+      transform: translate(10px, 0);
+    }
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &.added {
+    background-color: #2e7d32;
+
+    .IconContainer {
+      transform: translateX(46px);
+      color: #fff;
+    }
+    .text {
+      color: #fff;
+      transform: translate(10px, 0);
+    }
+  }
+
+  // Sigue siendo clickeable — solo cambia de color para diferenciarlo visualmente,
+  // dejando claro que es "consultar" y no "comprar directo"
+  &.no-stock {
+    background-color: var(--pc-teal);
+
+    .IconContainer,
+    .text {
+      color: var(--pc-cream);
+    }
 
     &:hover {
-      background: #6b7a78;
-      color: #fff;
+      background-color: #094848;
     }
   }
 }

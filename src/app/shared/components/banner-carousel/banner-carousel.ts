@@ -1,7 +1,22 @@
-import { Component, Inject, Input, OnInit, OnDestroy, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  Component,
+  Inject,
+  Input,
+  OnInit,
+  OnDestroy,
+  PLATFORM_ID,
+  signal,
+  computed,
+} from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { BANNER_REPOSITORY, BannerRepository } from '../../../core/tokens/banner-repository.token';
 import { optimizeCloudinaryUrl } from '../../../core/utils/cloudinary.util';
+
+interface BannerSlide {
+  imageUrl: string;
+  imageMobileUrl: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-banner-carousel',
@@ -13,27 +28,52 @@ import { optimizeCloudinaryUrl } from '../../../core/utils/cloudinary.util';
 export class BannerCarousel implements OnInit, OnDestroy {
   @Input() screen: 'Ventas' | 'Alquiler' = 'Ventas';
 
-  slides = signal<{ imageUrl: string; name: string }[]>([]);
+  private rawSlides = signal<BannerSlide[]>([]);
   currentIndex = signal(0);
+  isMobile = signal(false);
+
+  slides = computed(() =>
+    this.rawSlides().map((s) => ({
+      imageUrl: this.isMobile() ? s.imageMobileUrl : s.imageUrl,
+      name: s.name,
+    })),
+  );
 
   private intervalId?: ReturnType<typeof setInterval>;
+  private isBrowser: boolean;
+  private resizeHandler = () => this.checkIsMobile();
 
-  constructor(@Inject(BANNER_REPOSITORY) private bannerRepo: BannerRepository) {}
+  constructor(
+    @Inject(BANNER_REPOSITORY) private bannerRepo: BannerRepository,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit() {
+    if (this.isBrowser) {
+      this.checkIsMobile();
+      window.addEventListener('resize', this.resizeHandler);
+    }
+
     this.bannerRepo.getBanners().subscribe((banners) => {
       const filtered = banners
         .filter((b) => b.screen === 'Ambos' || b.screen === this.screen)
         .map((b) => ({
-          imageUrl: optimizeCloudinaryUrl(b.imageUrl, 1400, '4:1'),
+          imageUrl: optimizeCloudinaryUrl(b.imageUrl, 1400, '5:1'),
+          imageMobileUrl: optimizeCloudinaryUrl(b.imageMobileUrl, 700, '4:3'),
           name: b.name,
         }));
-      this.slides.set(filtered);
+      this.rawSlides.set(filtered);
 
       if (filtered.length > 1) {
         this.startAutoplay();
       }
     });
+  }
+
+  private checkIsMobile() {
+    this.isMobile.set(window.innerWidth <= 700);
   }
 
   goTo(index: number) {
@@ -65,5 +105,8 @@ export class BannerCarousel implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.intervalId) clearInterval(this.intervalId);
+    if (this.isBrowser) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
   }
 }

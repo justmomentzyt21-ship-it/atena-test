@@ -8,9 +8,8 @@
 .carousel {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 1;
+  aspect-ratio: 5 / 1;
   overflow: hidden;
-  /* border-radius: 14px; */
   background: #f0ece2;
 
   &__track {
@@ -89,7 +88,7 @@
 
 @media (max-width: 700px) {
   .carousel {
-    aspect-ratio: 3 / 1; // en mobile, 5:1 queda demasiado achatado y el texto se ilegible
+    aspect-ratio: 4 / 3; // coincide con la proporción que pedimos en el mapeo de arriba
     border-radius: 10px;
   }
 

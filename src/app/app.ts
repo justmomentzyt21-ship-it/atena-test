@@ -1,5 +1,6 @@
-import { Component, Inject, signal } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 import { Navbar } from './shared/components/navbar/navbar';
 import { Footer } from './shared/components/footer/footer';
 import { PRODUCT_REPOSITORY, ProductRepository } from './core/tokens/product-repository.token';
@@ -14,18 +15,28 @@ import { WhatsappButton } from './shared/components/whatsapp-button/whatsapp-but
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('grupo-atena-web');
 
   constructor(
     @Inject(PRODUCT_REPOSITORY) private productRepo: ProductRepository,
     @Inject(BANNER_REPOSITORY) private bannerRepo: BannerRepository,
     private tabTitle: TabTitleService,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
+
   ngOnInit() {
-    // dispara el fetch en segundo plano, sin bloquear nada visualmente
-    this.productRepo.getProducts().subscribe();
-    this.bannerRepo.getBanners().subscribe();
+    if (isPlatformBrowser(this.platformId)) {
+      this.productRepo.getProducts().subscribe({
+        next: () => {},
+        error: (err) => console.warn('Prefetch de productos falló (no bloqueante):', err),
+      });
+      this.bannerRepo.getBanners().subscribe({
+        next: () => {},
+        error: (err) => console.warn('Prefetch de banners falló (no bloqueante):', err),
+      });
+    }
+
     this.tabTitle.start();
   }
 }
