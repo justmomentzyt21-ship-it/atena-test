@@ -71,12 +71,12 @@ export class Home {
     { src: '/images/hospitals/logo2.jpg', alt: 'Hospital 2' },
     { src: '/images/hospitals/logo3.png', alt: 'Hospital 3' },
     { src: '/images/hospitals/logo4.jpg', alt: 'Hospital 4' },
-    /* { src: '/images/hospitals/logo5.jpg', alt: 'Hospital 5' },
+    { src: '/images/hospitals/logo5.jpg', alt: 'Hospital 5' },
     { src: '/images/hospitals/logo2.jpg', alt: 'Hospital 6' },
     { src: '/images/hospitals/logo3.png', alt: 'Hospital 7' },
     { src: '/images/hospitals/logo4.jpg', alt: 'Hospital 8' },
     { src: '/images/hospitals/logo3.png', alt: 'Hospital 7' },
-    { src: '/images/hospitals/logo4.jpg', alt: 'Hospital 8' }, */
+    { src: '/images/hospitals/logo4.jpg', alt: 'Hospital 8' },
   ];
 
   ngOnInit() {

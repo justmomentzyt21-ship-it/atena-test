@@ -39,6 +39,8 @@
     border-radius: 14px;
     padding: 1.5rem 1.2rem;
     height: fit-content;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
   }
 
   &__sidebar-title {
@@ -88,6 +90,9 @@
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.15s;
   }
 
   &__search {
@@ -172,6 +177,7 @@
     border: 1px solid rgba(11, 93, 93, 0.08);
     max-height: 300px;
     overflow-y: auto;
+    animation: fadeInUp 0.25s ease forwards;
 
     button {
       width: 100%;
@@ -231,6 +237,48 @@
     padding: 3rem 1rem;
     color: var(--c-teal-light);
     font-size: 0.95rem;
+    opacity: 0;
+    animation: fadeInUp 0.4s ease forwards;
+  }
+}
+
+// Tarjetas del grid: entrada escalonada, con tope para no demorar
+// demasiado cuando hay muchos resultados
+.catalogo__grid > * {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@for $i from 1 through 12 {
+  .catalogo__grid > *:nth-child(#{$i}) {
+    animation-delay: #{$i * 0.06}s;
+  }
+}
+
+.catalogo__grid > *:nth-child(n + 13) {
+  animation-delay: 0.72s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalogo__sidebar,
+  .catalogo__content,
+  .catalogo__category-dropdown-list,
+  .catalogo__loading,
+  .catalogo__empty,
+  .catalogo__grid > * {
+    animation: none;
+    opacity: 1;
   }
 }
 

@@ -91,3 +91,189 @@
     </div>
   </div>
 </section>
+
+<section class="work-with-us">
+  <div class="work-with-us__intro">
+    <span class="contacto__eyebrow">Sumate al equipo</span>
+    <h2>¿Querés trabajar con nosotros?</h2>
+  </div>
+
+  <div class="work-with-us__grid">
+    <!-- Formulario CV -->
+    <div class="work-form">
+      <h3>Enviá tu CV</h3>
+      <p class="work-form__hint">Compartinos tus datos y un link a tu CV (Drive, LinkedIn, etc.)</p>
+
+      <div class="work-form__field">
+        <label for="cv-name">Nombre y apellido</label>
+        <input
+          id="cv-name"
+          type="text"
+          [value]="cvName()"
+          (input)="onCvNameChange($any($event.target).value)"
+        />
+        @if (cvTouched() && cvName().trim().length < 3) {
+          <span class="work-form__error">Ingresá tu nombre completo</span>
+        }
+      </div>
+
+      <div class="work-form__field">
+        <label for="cv-email">Email</label>
+        <input
+          id="cv-email"
+          type="email"
+          [value]="cvEmail()"
+          (input)="onCvEmailChange($any($event.target).value)"
+        />
+        @if (cvTouched() && cvEmail().trim().length < 5) {
+          <span class="work-form__error">Ingresá un email válido</span>
+        }
+      </div>
+
+      <div class="work-form__field">
+        <label for="cv-position">Puesto de interés (opcional)</label>
+        <input
+          id="cv-position"
+          type="text"
+          placeholder="Ej: Ventas, Técnico, Administración"
+          [value]="cvPosition()"
+          (input)="onCvPositionChange($any($event.target).value)"
+        />
+      </div>
+
+      <div class="work-form__field">
+        <label for="cv-link">Link a tu CV</label>
+        <input
+          id="cv-link"
+          type="text"
+          placeholder="Link de Drive, LinkedIn, etc."
+          [value]="cvLink()"
+          (input)="onCvLinkChange($any($event.target).value)"
+        />
+        @if (cvTouched() && cvLink().trim().length < 5) {
+          <span class="work-form__error">Pegá el link a tu CV</span>
+        }
+      </div>
+      <div class="honeypot" aria-hidden="true">
+        <input
+          type="text"
+          tabindex="-1"
+          autocomplete="off"
+          [value]="cvHoneypot()"
+          (input)="onCvHoneypotChange($any($event.target).value)"
+        />
+      </div>
+
+      <div class="work-form__actions">
+        <button
+          type="button"
+          class="work-form__btn work-form__btn--whatsapp"
+          (click)="sendCvWhatsApp()"
+        >
+          Enviar por WhatsApp
+        </button>
+        @if (isMobile()) {
+          <button
+            type="button"
+            class="work-form__btn work-form__btn--email"
+            (click)="sendCvEmail()"
+          >
+            Enviar por Email
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Formulario Distribuidor -->
+    <div class="work-form">
+      <h3>¿Querés ser distribuidor?</h3>
+      <p class="work-form__hint">Contanos sobre tu empresa y tu zona de interés.</p>
+
+      <div class="work-form__field">
+        <label for="dist-name">Nombre</label>
+        <input
+          id="dist-name"
+          type="text"
+          [value]="distName()"
+          (input)="onDistNameChange($any($event.target).value)"
+        />
+        @if (distTouched() && distName().trim().length < 3) {
+          <span class="work-form__error">Ingresá tu nombre</span>
+        }
+      </div>
+
+      <div class="work-form__field">
+        <label for="dist-company">Empresa (opcional)</label>
+        <input
+          id="dist-company"
+          type="text"
+          [value]="distCompany()"
+          (input)="onDistCompanyChange($any($event.target).value)"
+        />
+      </div>
+
+      <div class="work-form__field">
+        <label for="dist-email">Email</label>
+        <input
+          id="dist-email"
+          type="email"
+          [value]="distEmail()"
+          (input)="onDistEmailChange($any($event.target).value)"
+        />
+        @if (distTouched() && distEmail().trim().length < 5) {
+          <span class="work-form__error">Ingresá un email válido</span>
+        }
+      </div>
+
+      <div class="work-form__field">
+        <label for="dist-zone">Zona / Provincia</label>
+        <input
+          id="dist-zone"
+          type="text"
+          [value]="distZone()"
+          (input)="onDistZoneChange($any($event.target).value)"
+        />
+        @if (distTouched() && distZone().trim().length < 2) {
+          <span class="work-form__error">Contanos tu zona</span>
+        }
+      </div>
+
+      <div class="work-form__field">
+        <label for="dist-message">Mensaje (opcional)</label>
+        <textarea
+          id="dist-message"
+          rows="3"
+          [value]="distMessage()"
+          (input)="onDistMessageChange($any($event.target).value)"
+        ></textarea>
+      </div>
+      <div class="honeypot" aria-hidden="true">
+        <input
+          type="text"
+          tabindex="-1"
+          autocomplete="off"
+          [value]="distHoneypot()"
+          (input)="onDistHoneypotChange($any($event.target).value)"
+        />
+      </div>
+      <div class="work-form__actions">
+        <button
+          type="button"
+          class="work-form__btn work-form__btn--whatsapp"
+          (click)="sendDistWhatsApp()"
+        >
+          Enviar por WhatsApp
+        </button>
+        @if (isMobile()) {
+          <button
+            type="button"
+            class="work-form__btn work-form__btn--email"
+            (click)="sendDistEmail()"
+          >
+            Enviar por Email
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</section>

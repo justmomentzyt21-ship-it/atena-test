@@ -8,10 +8,11 @@ import { BANNER_REPOSITORY, BannerRepository } from './core/tokens/banner-reposi
 import { CartDrawer } from './shared/components/cart-drawer/cart-drawer';
 import { TabTitleService } from './core/services/tab-title.service';
 import { WhatsappButton } from './shared/components/whatsapp-button/whatsapp-button';
+import { Toast } from './shared/components/toast/toast';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Footer, CartDrawer, WhatsappButton],
+  imports: [RouterOutlet, Navbar, Footer, CartDrawer, WhatsappButton, Toast],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
