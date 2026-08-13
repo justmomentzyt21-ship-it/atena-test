@@ -61,7 +61,7 @@ export class BannerCarousel implements OnInit, OnDestroy {
         .filter((b) => b.screen === 'Ambos' || b.screen === this.screen)
         .map((b) => ({
           imageUrl: optimizeCloudinaryUrl(b.imageUrl, 1400, '5:1'),
-          imageMobileUrl: optimizeCloudinaryUrl(b.imageMobileUrl, 700, '4:3'),
+          imageMobileUrl: optimizeCloudinaryUrl(b.imageMobileUrl, 900, '3:4'),
           name: b.name,
         }));
       this.rawSlides.set(filtered);
