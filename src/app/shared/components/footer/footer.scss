@@ -16,23 +16,23 @@
     var(--footer-navy) 100%
   );
   color: var(--footer-cream);
-  /* Padding fluido: nunca se aplasta entre el desktop grande y el primer breakpoint */
+
   padding: 2rem clamp(1.5rem, 6vw, 10rem) 0;
   position: relative;
   overflow: hidden;
 
   &__top {
-    display: flex;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
     gap: 2.5rem;
     padding-bottom: 2.5rem;
   }
 
   &__middle {
     display: flex;
+    justify-content: space-evenly;
     gap: 3.5rem;
-    margin-left: auto;
-    margin-right: 5%;
   }
 
   &__col {
@@ -183,22 +183,18 @@
 /* ===== Tablet: 2 columnas por fila, con divisores reemplazados por líneas horizontales ===== */
 @media (max-width: 992px) {
   .footer__top {
-    flex-wrap: wrap;
+    grid-template-columns: 1fr; // una sola columna, todo apilado
     gap: 2rem 1.5rem;
   }
 
   .footer__brand {
-    flex: 1 1 100%;
     max-width: none;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--footer-divider);
   }
 
   .footer__middle {
-    margin-left: 0;
-    margin-right: 0;
-    flex: 1 1 100%;
-    justify-content: space-between;
+    justify-content: space-around; // en tablet sí querés que usen todo el ancho, no centrado
     gap: 1.5rem;
   }
 

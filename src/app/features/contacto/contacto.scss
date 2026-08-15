@@ -410,6 +410,10 @@
     font-size: 0.88rem;
     cursor: pointer;
     transition: opacity 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 
     &:hover {
       opacity: 0.9;

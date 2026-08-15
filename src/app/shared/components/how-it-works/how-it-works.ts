@@ -11,6 +11,18 @@ import { CommonModule } from '@angular/common';
 export class HowItWorks {
   private screenInput = signal<'venta' | 'alquiler'>('venta');
 
+  downloadUrl = computed(() =>
+    this.screenInput() === 'alquiler'
+      ? '/catalogo-atena-alquiler.pdf'
+      : '/catalogo-atena-ventas.pdf',
+  );
+
+  downloadLabel = computed(() =>
+    this.screenInput() === 'alquiler'
+      ? 'Descargar catálogo de alquiler'
+      : 'Descargar catálogo de ventas',
+  );
+
   @Input() set screen(value: 'venta' | 'alquiler') {
     this.screenInput.set(value);
   }
@@ -41,8 +53,7 @@ export class HowItWorks {
       number: 3,
       title: 'Enviá',
       subtitle: 'Recibí tu cotización',
-      description:
-        'Enviá tu consulta por WhatsApp o Email y un asesor se pondrá en contacto con vos.',
+      description: 'Enviá tu consulta por WhatsApp y un asesor se pondrá en contacto con vos.',
     },
   ];
 }

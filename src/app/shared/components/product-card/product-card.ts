@@ -4,6 +4,7 @@ import { Product } from '../../../core/models/product.model';
 import { CartService } from '../../../core/services/cart';
 import { RouterLink } from '@angular/router';
 import { optimizeCloudinaryUrl } from '../../../core/utils/cloudinary.util';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-product-card',
@@ -20,7 +21,10 @@ export class ProductCard {
 
   optimizedImage = '';
 
-  constructor(private cart: CartService) {}
+  constructor(
+    private cart: CartService,
+    private toast: ToastService,
+  ) {}
 
   ngOnInit() {
     this.optimizedImage = optimizeCloudinaryUrl(this.product.imageUrl, 400);
@@ -38,6 +42,7 @@ export class ProductCard {
   addToCart() {
     this.cart.addItem(this.product, this.selectedModality());
     this.justAdded.set(true);
+    this.toast.show('¡Producto agregado al carrito!');
     setTimeout(() => this.justAdded.set(false), 1500);
   }
 }

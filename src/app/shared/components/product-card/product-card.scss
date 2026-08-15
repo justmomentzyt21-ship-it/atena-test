@@ -39,8 +39,8 @@
     position: absolute;
     top: 0.6rem;
     left: 0.6rem;
-    background: var(--pc-gold);
-    color: var(--pc-ink);
+    background: var(--pc-teal);
+    color: var(--pc-cream);
     font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -164,7 +164,7 @@
 
   &:hover {
     .IconContainer {
-      transform: translateX(46px);
+      transform: translateX(60px);
       border-radius: 40px;
     }
     .text {
@@ -180,7 +180,7 @@
     background-color: #46914a;
 
     .IconContainer {
-      transform: translateX(46px);
+      transform: translateX(60px);
       color: #fff;
     }
     .text {

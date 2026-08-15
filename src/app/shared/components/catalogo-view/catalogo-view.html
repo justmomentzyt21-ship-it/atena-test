@@ -71,7 +71,9 @@
       @if (loading()) {
         <app-spinner label="Cargando catálogo..."></app-spinner>
       } @else if (filteredProducts().length === 0) {
-        <div class="catalogo__empty">No encontramos productos con esos filtros.</div>
+        <div class="catalogo__empty">
+          ¿No aparece lo que buscás? Contanos qué necesitás, seguro podemos ayudarte a conseguirlo.
+        </div>
       } @else {
         <div class="catalogo__grid">
           @for (product of filteredProducts(); track product.id) {

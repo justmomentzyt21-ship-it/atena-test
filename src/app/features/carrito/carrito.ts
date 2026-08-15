@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CartService } from '../../core/services/cart';
+import { Component, OnInit, OnDestroy, PLATFORM_ID, Inject, signal } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../core/services/cart';
+import { ToastService } from '../../core/services/toast.service';
 
 @Component({
   selector: 'app-carrito',
@@ -10,11 +11,38 @@ import { RouterLink } from '@angular/router';
   templateUrl: './carrito.html',
   styleUrl: './carrito.scss',
 })
-export class Carrito {
-  private readonly phoneNumber = '+541131080788';
-  private readonly email = 'tomasrom.dev@gmail.com';
+export class Carrito implements OnInit, OnDestroy {
+  private readonly phoneNumber = '5491131080788';
+  private readonly email = 'ventasatena@gmail.com';
 
-  constructor(public cart: CartService) {}
+  isMobile = signal(false);
+  private isBrowser: boolean;
+  private resizeHandler = () => this.checkIsMobile();
+
+  constructor(
+    public cart: CartService,
+    private toast: ToastService,
+    @Inject(PLATFORM_ID) platformId: Object,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  ngOnInit() {
+    if (this.isBrowser) {
+      this.checkIsMobile();
+      window.addEventListener('resize', this.resizeHandler);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.isBrowser) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
+  }
+
+  private checkIsMobile() {
+    this.isMobile.set(window.innerWidth <= 700);
+  }
 
   increase(productId: string, modality: 'venta' | 'alquiler', current: number) {
     this.cart.updateQuantity(productId, modality, current + 1);
@@ -36,24 +64,8 @@ export class Carrito {
     window.open(this.cart.generateWhatsAppLink(this.phoneNumber), '_blank');
   }
 
-  toastMessage = signal<string | null>(null);
-
-  private showToast(message: string) {
-    this.toastMessage.set(message);
-    setTimeout(() => this.toastMessage.set(null), 4000);
-  }
-
   sendEmail() {
     window.location.href = this.cart.generateMailtoLink(this.email);
-
-    if (this.cart.needsClipboardFallback()) {
-      this.cart.copyMessageToClipboard().then((copied) => {
-        if (copied) {
-          this.showToast(
-            'Tu consulta es larga — la copiamos al portapapeles. Pegala en el email con Ctrl+V.',
-          );
-        }
-      });
-    }
+    this.toast.show('Se abrió tu app de correo con la consulta lista para enviar.');
   }
 }

@@ -54,6 +54,14 @@
                   <path fill="currentColor" d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                 </svg>
               }
+              @case ('install') {
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path
+                    fill="currentColor"
+                    d="M20.5 3.5h-7a1 1 0 0 0-.7.29l-9 9a1 1 0 0 0 0 1.42l6.99 6.99a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 .29-.7v-7a1 1 0 0 0-1-1zM16 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+                  />
+                </svg>
+              }
             }
           </div>
         </div>
@@ -101,6 +109,12 @@
       </div>
 
       <button type="button" class="st-cta__button" (click)="sendWhatsApp()">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+          <path
+            fill="currentColor"
+            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+          />
+        </svg>
         Enviar consulta por WhatsApp
       </button>
     </div>

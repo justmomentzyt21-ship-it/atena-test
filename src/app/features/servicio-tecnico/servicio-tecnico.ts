@@ -47,6 +47,13 @@ export class ServicioTecnico implements OnInit {
       icon: 'check',
       image: '/images/servicio-tecnico/i (4).png',
     },
+    {
+      title: 'Instalaciones',
+      description:
+        'Instalación y puesta en marcha de equipamiento médico, cumpliendo con los requisitos técnicos y normativos correspondientes.',
+      icon: 'install',
+      image: '/images/servicio-tecnico/i (5).png',
+    },
   ];
 
   constructor(

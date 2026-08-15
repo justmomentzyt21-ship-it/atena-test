@@ -338,6 +338,7 @@
       position: static;
       background: transparent;
       padding: 0;
+      z-index: 5;
 
       .catalogo__category-list {
         display: none; // se oculta la lista desktop
