@@ -1,6 +1,10 @@
 # GrupoAtenaWeb
 
+<<<<<<< HEAD
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.4.
+=======
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.
+>>>>>>> 78cb7fea267d1bbc524dba3bcd3911ce24a8ad70
 
 ## Development server
 
