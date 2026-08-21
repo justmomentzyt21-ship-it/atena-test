@@ -115,7 +115,7 @@ export class ProductoDetalle implements OnInit, OnDestroy {
   private injectSchema(product: Product) {
     this.removeSchema();
 
-    const schema: any = {
+    const schema = {
       '@context': 'https://schema.org',
       '@type': 'Product',
       name: product.name,
@@ -123,15 +123,6 @@ export class ProductoDetalle implements OnInit, OnDestroy {
       image: product.imageUrl,
       category: product.category,
     };
-
-    const price = product.salePrice ?? product.rentalPrice;
-    if (price) {
-      schema.offers = {
-        '@type': 'Offer',
-        price: price,
-        priceCurrency: 'ARS',
-      };
-    }
 
     const json = JSON.stringify(schema);
 

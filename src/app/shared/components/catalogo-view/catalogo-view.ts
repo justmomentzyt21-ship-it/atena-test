@@ -40,11 +40,13 @@ export class CatalogoView implements OnInit {
     const category = this.selectedCategory();
     const term = this.searchTerm().trim().toLowerCase();
 
-    return this.productsForType().filter((product) => {
-      const matchesCategory = category === 'Todos los equipos' || product.category === category;
-      const matchesSearch = !term || product.name.toLowerCase().includes(term);
-      return matchesCategory && matchesSearch;
-    });
+    return this.productsForType()
+      .filter((product) => {
+        const matchesCategory = category === 'Todos los equipos' || product.category === category;
+        const matchesSearch = !term || product.name.toLowerCase().includes(term);
+        return matchesCategory && matchesSearch;
+      })
+      .sort((a, b) => b.discount - a.discount); // mayor descuento primero
   });
 
   constructor(@Inject(PRODUCT_REPOSITORY) private productRepo: ProductRepository) {}

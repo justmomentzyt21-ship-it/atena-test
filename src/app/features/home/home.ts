@@ -33,6 +33,7 @@ export class Home {
     {
       name: 'Atena Dana Yasmin',
       logo: '/images/brands/dana-yasmin-logo.png',
+      cover: '/images/brands/dana-yasminn-cover.png',
       tag: 'Ventas',
       title: 'Ventas / Importaciones',
       description:
@@ -44,17 +45,19 @@ export class Home {
     {
       name: 'Atena Full Care',
       logo: '/images/brands/full-care-logo.png',
+      cover: '/images/brands/full-caree-cover.png',
       tag: 'Alquiler',
       title: 'Alquiler de Equipamiento',
       description:
         'Alquiler de equipamiento médico y hospitalario, con soluciones flexibles para cada necesidad.',
       link: '/distribucion-alquiler',
       cta: 'Ver catálogo de alquiler',
-      accent: '#3f8f7a',
+      accent: '#3f7e5a',
     },
     {
       name: 'Medicsur',
       logo: '/images/brands/medicsur-logo.png',
+      cover: '/images/brands/medicsurrr-cover.png',
       tag: 'Mantenimiento',
       title: 'Servicio Técnico',
       description:
@@ -70,7 +73,7 @@ export class Home {
     { src: '/images/hospitals/logo1.png', alt: 'Hospital 1' },
     { src: '/images/hospitals/logo2.jpg', alt: 'Hospital 2' },
     { src: '/images/hospitals/logo3.png', alt: 'Hospital 3' },
-    { src: '/images/hospitals/logo4.jpg', alt: 'Hospital 4' },
+    { src: '/images/hospitals/logo4.png', alt: 'Hospital 4' },
     { src: '/images/hospitals/logo5.jpg', alt: 'Hospital 5' },
     { src: '/images/hospitals/logo2 - copia.jpg', alt: 'Hospital 6' },
     { src: '/images/hospitals/logo3 - copia.png', alt: 'Hospital 7' },

@@ -1,5 +1,4 @@
 :host {
-  /* Alineado con la paleta del home */
   --nav-teal: #016974;
   --nav-teal-light: #12807f;
   --nav-teal-deep: #1a4c81;
@@ -106,14 +105,14 @@
       height: 34px;
       border-radius: 50%;
       background: var(--nav-cream);
-      color: var(--nav-teal);
+      color: #026e86;
       transition:
         background 0.2s ease,
         color 0.2s ease,
         transform 0.2s ease;
 
       &:hover {
-        background: var(--nav-teal);
+        background: #026e86;
         color: #fff;
       }
     }
@@ -129,7 +128,7 @@
     border: none;
     cursor: pointer;
     border-radius: 50%;
-    background: var(--nav-teal);
+    background: #026e86;
     text-decoration: none;
     font-size: 1.2rem;
     box-shadow: 0 4px 10px rgba(1, 105, 116, 0.25);

@@ -86,12 +86,11 @@ export class GoogleSheetsProductAdapter implements ProductRepository {
       name: row['nombre'],
       slug: generateSlug(row['nombre']),
       category: row['categoria'],
-      salePrice: row['precioVenta'],
-      rentalPrice: row['precioAlquiler'],
       type: this.mapType(row['tipo']),
       description: row['descripcion'],
       imageUrl: row['imagen'],
       stock: row['stock'] ?? 0,
+      discount: row['descuento'] ?? 0,
     };
   }
 

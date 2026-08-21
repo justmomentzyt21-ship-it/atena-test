@@ -21,6 +21,9 @@
 
       <div class="detalle__info">
         <span class="detalle__category">{{ p.category }}</span>
+        @if (p.discount > 0) {
+          <span class="detalle__discount">{{ p.discount }}% OFF</span>
+        }
         <h1>{{ p.name }}</h1>
 
         @if (desc.items.length) {
@@ -35,15 +38,6 @@
         } @else {
           <p class="detalle__description">{{ desc.intro }}</p>
         }
-
-        <div class="detalle__prices">
-          @if (p.salePrice) {
-            <span>Venta: ${{ p.salePrice | number }}</span>
-          }
-          @if (p.rentalPrice) {
-            <span>Alquiler: ${{ p.rentalPrice | number }}</span>
-          }
-        </div>
 
         @if (p.type === 'venta-alquiler') {
           <div class="detalle__modality">

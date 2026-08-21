@@ -192,13 +192,7 @@
 }
 
 .st-cta {
-  background: linear-gradient(
-    300deg,
-    var(--ms-navy-deep) 0%,
-    var(--ms-navy) 45%,
-    var(--ms-teal-dark) 75%,
-    #7aa98b 100%
-  );
+  background: var(--c-cream);
   padding: 4.5rem 2rem 5rem;
   text-align: center;
   position: relative;
@@ -225,14 +219,14 @@
   }
 
   h2 {
-    color: #fff;
+    color: var(--ms-navy);
     font-size: 1.5rem;
     margin: 0 0 0.75rem;
   }
 
   p {
-    color: var(--c-cream);
-    opacity: 0.85;
+    color: var(--c-ink);
+    opacity: 0.75;
     margin: 0 0 2rem;
   }
 
@@ -265,12 +259,13 @@
 .st-form {
   text-align: left;
   background: #fff;
+  border: 1px solid rgba(27, 74, 120, 0.08);
   border-radius: 16px;
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 14px 34px rgba(27, 74, 120, 0.1);
 
   &__field {
     display: flex;
@@ -340,9 +335,9 @@
   .st-hero {
     padding: 3rem 1.25rem;
 
-    &__logo {
+    /* &__logo {
       height: 64px;
-    }
+    } */
   }
 
   .st-services,

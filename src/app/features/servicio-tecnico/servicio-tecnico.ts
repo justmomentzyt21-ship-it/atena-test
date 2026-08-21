@@ -50,7 +50,7 @@ export class ServicioTecnico implements OnInit {
     {
       title: 'Instalaciones',
       description:
-        'Instalación y puesta en marcha de equipamiento médico, cumpliendo con los requisitos técnicos y normativos correspondientes.',
+        'Instalación y puesta en marcha de equipamiento médico, cumpliendo con los requisitos técnicos y normativas correspondientes.',
       icon: 'install',
       image: '/images/servicio-tecnico/i (5).png',
     },
@@ -85,13 +85,16 @@ export class ServicioTecnico implements OnInit {
     }
 
     const message = [
-      'Hola! Necesito asistencia técnica para el siguiente equipo: ',
+      '¡Hola! Necesito asistencia técnica para el siguiente equipo:',
       '',
       `Equipo: ${this.equipmentInput()}`,
       `Problema/consulta: ${this.problemInput()}`,
       '',
-      'Nombre y apellido:',
-      'Muchas gracias!',
+      'Podés adjuntar una foto para un mejor diagnóstico.',
+      '',
+      'Nombre y apellido: ',
+      '',
+      '¡Muchas gracias!',
     ].join('\n');
 
     const link = `https://wa.me/${this.phoneNumber}?text=${encodeURIComponent(message)}`;
